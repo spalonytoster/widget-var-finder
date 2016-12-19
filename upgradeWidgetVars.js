@@ -28,7 +28,7 @@ function evaluateFileFunction(filePath, filename, regex, replacement) {
 if (input) {
   input.forEach((occurencesInAFile) => {
     occurencesInAFile.widgetVars.forEach((widgetVar) => {
-      let regex = new RegExp(`(${widgetVar}\\.)`, 'g');
+      let regex = new RegExp(`\\b(${widgetVar}\\b\\.)`, 'g');
       let options = {
         dir: process.argv[2],
         filters: [regexes.xhtmlRegex, regexes.jsRegex],
