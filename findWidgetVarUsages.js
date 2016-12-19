@@ -9,9 +9,9 @@ let results = [];
 if (input) {
   input.forEach((occurencesInAFile) => {
     occurencesInAFile.widgetVars.forEach((widgetVar) => {
-      // let regex = new RegExp(`(${widgetVar}\\..{1,30})`, 'g');
-      // let regex = new RegExp(`(${widgetVar}\\.((?!.*hide)(?!.*show)).{1,30})`, 'g');
-      let regex = new RegExp(`(${widgetVar}\\.(hide|show).{1,30})`, 'g');
+      // let regex = new RegExp(`([^\.]${widgetVar}\\..{1,30})`, 'g');
+      let regex = new RegExp(`([^\.]${widgetVar}\\.((?!.*hide)(?!.*show)).{1,30})`, 'g');
+      // let regex = new RegExp(`([^\.]${widgetVar}\\.(hide|show).{1,30})`, 'g');
       let options = {
         dir: process.argv[2],
         filters: [regexes.xhtmlRegex, regexes.jsRegex],
@@ -34,4 +34,4 @@ if (input) {
   });
 }
 
-fs.writeFileSync('usages_results_show_hide.json', JSON.stringify(results, null, 2));
+fs.writeFileSync('usages_results_except_show_hide.json', JSON.stringify(results, null, 2));
