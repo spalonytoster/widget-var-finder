@@ -64,6 +64,7 @@ function findRegexInFile(filePath, filename, regex) {
   }
 
   do {
+    // console.log(filename);
     result = regex.exec(file);
     if (result !== null) {
       widgetVars.push(result[1]);

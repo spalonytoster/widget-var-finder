@@ -10,8 +10,10 @@ if (input) {
   input.forEach((occurencesInAFile) => {
     occurencesInAFile.widgetVars.forEach((widgetVar) => {
       // let regex = new RegExp(`[^\.](\\b${widgetVar}\\..{1,30})`, 'g');
-      let regex = new RegExp(`[^\.](\\b${widgetVar}\\.((?!.*jq)(?!.*jqId)(?!.*hide)(?!.*show)).{1,30})`, 'g');
-      // let regex = new RegExp(`[^\.](\\b${widgetVar}\\.(hide|show).{1,30})`, 'g');
+
+      // let regex = new RegExp(`(\\b${widgetVar}\\.((?!.*jq)(?!.*jqId)(?!.*hide)(?!.*show)).{1,30})|([^\\.]\\b${widgetVar}\\b)[^\\.'"}]`, 'g');
+      let regex = new RegExp(`[^\.](\\b${widgetVar}\\.(hide|show|jq|jqId).{1,50})`, 'g');
+
       let options = {
         dir: process.argv[2],
         filters: [regexes.xhtmlRegex, regexes.jsRegex],
@@ -34,4 +36,5 @@ if (input) {
   });
 }
 
-fs.writeFileSync('usages_results_except_show_hide.json', JSON.stringify(results, null, 2));
+// fs.writeFileSync('usages_results_except_show_hide.json', JSON.stringify(results, null, 2));
+fs.writeFileSync('usages_results_with_show_hide.json', JSON.stringify(results, null, 2));
